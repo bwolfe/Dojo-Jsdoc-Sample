@@ -1,0 +1,26 @@
+<project name="Dojo Jsdoc Sample" default="generateSample" basedir=".">
+
+  <property file="project.properties"/>
+
+  <target name="copyInTemplate">
+    <mkdir dir="${jsdoc.location}/templates/Dojo-Jsdoc-Template"/>
+    <copy todir="${jsdoc.location}/templates/Dojo-Jsdoc-Template">
+      <fileset dir="${jsdoc.template}"/>
+    </copy>
+  </target>
+
+
+  <target name="generateSample" depends="copyInTemplate">
+    <exec executable="${jsdoc.location}/jsdoc" >
+      <arg value="-p"/>
+      <arg value="-r"/>
+      <arg value="-l"/>
+      <arg value="-t"/>
+      <arg value="templates/Dojo-Jsdoc-Template"/>
+      <arg value="-d"/>
+      <arg value="output"/>
+      <arg value="js"/>
+    </exec>
+  </target>
+
+</project>
