@@ -1,7 +1,17 @@
+<!--
+	This ant script is provided to assist in demonstrationing and/or testing
+	the template. You can configure it through the properties file
+-->
 <project name="Dojo Jsdoc Sample" default="generateSample" basedir=".">
 
+  <!-- 
+	Please provide information about you environment in this property file 
+	-->
   <property file="project.properties"/>
-
+  
+  <!--
+	This tasks takes the lastest version of the template and copies it into jsdoc.
+  -->
   <target name="copyInTemplate">
     <mkdir dir="${jsdoc.location}/templates/Dojo-Jsdoc-Template"/>
     <copy todir="${jsdoc.location}/templates/Dojo-Jsdoc-Template">
@@ -9,18 +19,61 @@
     </copy>
   </target>
 
-
+  <!--
+	This task will call jsdoc assuming that it contains the template is 
+	available in jsdoc with the name 'Dojo-Jsdoc-Template'. It will then put 
+	the output in the 'output' folder
+  -->
   <target name="generateSample" depends="copyInTemplate">
-    <exec executable="${jsdoc.location}/jsdoc" >
-      <arg value="-p"/>
-      <arg value="-r"/>
-      <arg value="-l"/>
-      <arg value="-t"/>
-      <arg value="templates/Dojo-Jsdoc-Template"/>
-      <arg value="-d"/>
-      <arg value="output"/>
-      <arg value="js"/>
-    </exec>
+    
+	<!-- conditionally, one of these will run based on OS -->
+	<antcall target="generateWindows"/>
+	<antcall target="generateOther"/>
+  </target>
+  
+  <!--
+	Check if we are in windows or not
+  -->
+  <target name="checkOs">
+	<condition property="isWin">
+		<os family="windows"/>
+	</condition>
+  </target>
+  
+  <!--
+	Call jsodc to generate the documentation on a windows platform
+  -->
+  <target name="generateWindows"  if="isWin" depends="checkOs">
+    <echo>Running JsDoc on Windows...</echo>
+	<exec executable="${jsdoc.location}/jsdoc.cmd" >
+	  <arg value="-p"/>
+	  <arg value="-r"/>
+	  <arg value="-l"/>
+	  <arg value="-t"/>
+	  <arg value="templates/Dojo-Jsdoc-Template"/>
+	  <arg value="-d"/>
+	  <arg value="output"/>
+	  <arg value="js"/>
+	</exec>
+  </target>
+  
+  <!--
+	Call jsodc to generate the documentation on a *nix platform
+	
+	TODO: Currently i get an error whenever attempting to use the template on a mac platform.
+  -->
+  <target name="generateOther"  unless="isWin" depends="checkOs">
+	<echo>Running JsDoc on Unix-like...</echo>
+	<exec executable="${jsdoc.location}/jsdoc.cmd" >
+	  <arg value="-p"/>
+	  <arg value="-r"/>
+	  <arg value="-l"/>
+	  <arg value="-t"/>
+	  <arg value="templates/Dojo-Jsdoc-Template"/>
+	  <arg value="-d"/>
+	  <arg value="output"/>
+	  <arg value="js"/>
+	</exec>
   </target>
 
 </project>
