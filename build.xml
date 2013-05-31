@@ -64,7 +64,7 @@
   -->
   <target name="generateOther"  unless="isWin" depends="checkOs">
 	<echo>Running JsDoc on Unix-like...</echo>
-	<exec executable="${jsdoc.location}/jsdoc.cmd" >
+	<exec executable="${jsdoc.location}/jsdoc" >
 	  <arg value="-p"/>
 	  <arg value="-r"/>
 	  <arg value="-l"/>
