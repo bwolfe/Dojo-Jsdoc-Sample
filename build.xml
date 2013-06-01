@@ -76,4 +76,9 @@
 	</exec>
   </target>
 
+  <target name="clean">
+    <delete dir="output"/>
+    <mkdir dir="output" />
+  </target>
+
 </project>
