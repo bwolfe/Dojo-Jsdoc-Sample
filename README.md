@@ -6,8 +6,8 @@ This project provides sample code and example output for the "dojo-jsdoc-templat
 Getting started
 -----------------
 
-If your looking to run and generate the documentation for yourself:
-1. We assume that you have JsDoc installed somewhere on your machine. If you dont then go get it now.
+If you're looking to run and generate the documentation for yourself:
+1. We assume that you have JsDoc installed somewhere on your machine. If you don't, then go get it now.
 2. Clone Dojo-Jsdoc-Sample
 3. Clone Dojo-Jsdoc-Template
 4. Update the project.properties in the 'Dojo-Jsdoc-Sample' with the path of jsdoc for your system
@@ -16,7 +16,7 @@ If your looking to run and generate the documentation for yourself:
 7. Open the output folder
 8. Open the index.html
 
-Or, if your feeling lazy and just want to see sample output:
+Or, if you're feeling lazy and just want to see sample output:
 1. Clone Dojo-Jsdoc-Sample
 2. Open the output folder
 3. Open the index.html
